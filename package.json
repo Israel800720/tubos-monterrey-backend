@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend para Sistema de Solicitud de Crédito - TUBOS MONTERREY S.A. DE C.V.",
   "main": "dist/simple-server.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "nodemon --exec tsx src/app.ts",
     "dev:simple": "nodemon --exec tsx src/simple-server.ts",
