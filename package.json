@@ -9,8 +9,8 @@
     "dev:simple": "nodemon --exec tsx src/simple-server.ts",
     "build": "npx tsc src/simple-server.ts --outDir dist --target es2020 --module commonjs --esModuleInterop --skipLibCheck",
     "build:full": "tsc",
-    "start": "node dist/simple-server.js",
-    "start:simple": "node dist/simple-server.js",
+    "start": "node dist/app.js",
+    "start:simple": "node dist/app.js",
     "db:setup": "tsx --env-file .env scripts/setup-database.ts",
     "db:seed": "tsx --env-file .env scripts/seed-database.ts",
     "test": "jest",
@@ -36,6 +36,7 @@
     "pdf-lib": "^1.17.1",
     "pg": "^8.11.3",
     "resend": "^2.1.0",
+    "typescript": "^5.3.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
@@ -58,8 +59,7 @@
     "prettier": "^3.1.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsx": "^4.20.2",
-    "typescript": "^5.3.3"
+    "tsx": "^4.20.2"
   },
   "engines": {
     "node": ">=18.0.0"
