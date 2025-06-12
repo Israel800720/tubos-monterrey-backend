@@ -1,0 +1,58 @@
+# Configuración para deployment en Fly.io
+# TUBOS MONTERREY S.A. DE C.V. - Sistema de Solicitudes de Crédito
+
+app = "tubos-monterrey-backend"
+primary_region = "dfw" # Dallas - cercano a México
+
+[build]
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3001"
+
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+  [[http_service.http_checks]]
+    interval = "10s"
+    grace_period = "5s"
+    method = "GET"
+    path = "/api/health"
+    protocol = "http"
+    timeout = "2s"
+    tls_skip_verify = false
+
+[checks]
+  [checks.alive]
+    grace_period = "30s"
+    interval = "15s"
+    method = "get"
+    path = "/api/health"
+    port = 3001
+    protocol = "http"
+    timeout = "2s"
+    type = "http"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/static/"
+
+# Variables de entorno que se configuran con `fly secrets set`
+# DATABASE_URL="postgresql://..."
+# JWT_SECRET="..."
+# CLOUDINARY_CLOUD_NAME="..."
+# CLOUDINARY_API_KEY="..."
+# CLOUDINARY_API_SECRET="..."
+# RESEND_API_KEY="..."
+# ADMIN_EMAIL="ijimenez@tubosmonterrey.com.mx"
+# FROM_EMAIL="facturastubos@gmail.com"
